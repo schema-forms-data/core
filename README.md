@@ -37,6 +37,20 @@ Os demais (`templates`, `ui`, `renderer`, `builder`, `react`) dependem dele.
 
 ---
 
+## Ordem de atualização
+
+`core` é a **raiz** da cadeia — todos os outros pacotes dependem dele.
+
+Ao bumpar `core`, siga esta ordem nos demais:
+
+```
+core  →  templates  →  ui  →  renderer  →  builder  →  react
+```
+
+1. Bumpa e publica `core`
+2. Em cada pacote dependente, atualiza a versão de `@schema-forms-data/core` no `package.json`
+3. Segue a ordem acima para os bumps subsequentes
+
 ## Build
 
 ```bash
@@ -55,13 +69,11 @@ npm version patch        # 4.0.7 -> 4.0.8 (faz commit + tag)
 git push --follow-tags   # push na main dispara o publish da nova versão
 ```
 
-Usa **npm Trusted Publishing (OIDC)** — sem `NPM_TOKEN` armazenado — e anexa
-**provenance** automaticamente.
-
-> Primeira publicação: o Trusted Publisher do npm precisa do pacote já existindo.
-> Faça a versão inicial uma vez manualmente (`npm publish`), depois configure o Trusted
-> Publisher no npmjs.com e deixe o restante por conta do workflow.
+Requer o secret **`NPM_TOKEN`** no repositório GitHub (Settings → Secrets → Actions →
+`NPM_TOKEN`). Gere um **Automation token** em npmjs.com → Account → Access Tokens.
+O flag `--provenance` anexa attestation de build automaticamente (rastreabilidade de
+supply chain, sem custo extra).
 
 ## Licença
 
-[MIT](LICENSE) © Inovex Tecnologia
+[MIT](LICENSE) © schema-forms-data

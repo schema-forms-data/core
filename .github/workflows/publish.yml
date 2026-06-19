@@ -41,10 +41,10 @@ jobs:
           PKG_VERSION=$(node -p "require('./package.json').version")
           if npm view "${PKG_NAME}@${PKG_VERSION}" version 2>/dev/null | grep -q "${PKG_VERSION}"; then
             echo "skip=true" >> "$GITHUB_OUTPUT"
-            echo "ℹ️  ${PKG_NAME}@${PKG_VERSION} já existe no npm — nenhuma ação necessária."
+            echo "ℹ️  ${PKG_NAME}@${PKG_VERSION} já existe no npm — skip."
           else
             echo "skip=false" >> "$GITHUB_OUTPUT"
-            echo "🚀 Nova versão detectada: ${PKG_NAME}@${PKG_VERSION}"
+            echo "🚀 Nova versão: ${PKG_NAME}@${PKG_VERSION}"
           fi
 
       - name: Build
@@ -55,6 +55,8 @@ jobs:
         if: steps.version_check.outputs.skip == 'false'
         run: pnpm test:coverage
 
-      - name: Publish to npm (OIDC — sem NPM_TOKEN armazenado)
+      - name: Publish to npm
         if: steps.version_check.outputs.skip == 'false'
         run: pnpm publish --no-git-checks --provenance --access public
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
