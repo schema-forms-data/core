@@ -7,10 +7,10 @@
   "homepage": "https://schemaforms.github.io/schema-forms-data",
   "repository": {
     "type": "git",
-    "url": "https://github.com/SchemaFormsData/core.git"
+    "url": "https://github.com/schema-forms-data/core.git"
   },
   "bugs": {
-    "url": "https://github.com/SchemaFormsData/core/issues"
+    "url": "https://github.com/schema-forms-data/core/issues"
   },
   "keywords": [
     "react",
