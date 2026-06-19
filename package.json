@@ -1,6 +1,6 @@
 {
   "name": "@schema-forms-data/core",
-  "version": "4.0.9",
+  "version": "4.0.10",
   "description": "Core types, enums and utilities for SchemaForms — zero runtime dependencies, pure TypeScript",
   "license": "MIT",
   "author": "SchemaForms",
