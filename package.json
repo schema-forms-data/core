@@ -1,0 +1,78 @@
+{
+  "name": "@schema-forms-data/core",
+  "version": "4.0.7",
+  "description": "Core types, enums and utilities for SchemaForms — zero runtime dependencies, pure TypeScript",
+  "license": "MIT",
+  "author": "SchemaForms",
+  "homepage": "https://schemaforms.github.io/schema-forms-data",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/SchemaFormsData/core.git"
+  },
+  "bugs": {
+    "url": "https://github.com/SchemaFormsData/core/issues"
+  },
+  "keywords": [
+    "react",
+    "forms",
+    "schema",
+    "typescript",
+    "form-builder",
+    "schema-forms-data",
+    "dynamic-forms",
+    "form-validation",
+    "json-schema"
+  ],
+  "publishConfig": {
+    "access": "public",
+    "provenance": true
+  },
+  "sideEffects": false,
+  "type": "module",
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": {
+        "types": "./dist/index.d.ts",
+        "default": "./dist/index.js"
+      },
+      "require": {
+        "types": "./dist/index.d.ts",
+        "default": "./dist/index.cjs"
+      }
+    }
+  },
+  "files": [
+    "dist",
+    "README.md"
+  ],
+  "engines": {
+    "node": ">=22.0.0",
+    "pnpm": ">=10.0.0"
+  },
+  "scripts": {
+    "build": "pnpm run build:js && pnpm run build:types",
+    "build:js": "vite build",
+    "build:types": "tsc -p tsconfig.build.json --emitDeclarationOnly --declarationDir dist",
+    "dev": "vite build --watch",
+    "test": "vitest run",
+    "test:watch": "vitest --reporter=verbose",
+    "test:coverage": "vitest run --coverage",
+    "test:ui": "vitest --ui",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "lint": "tsc -p tsconfig.json --noEmit",
+    "clean": "rm -rf dist coverage .tsbuildinfo",
+    "prepublishOnly": "pnpm run clean && pnpm run build && pnpm run test"
+  },
+  "devDependencies": {
+    "@vitest/coverage-v8": "^2.1.0",
+    "@vitest/ui": "^2.1.0",
+    "typescript": "^5.6.0",
+    "vite": "^5.4.2",
+    "vite-plugin-dts": "^4.0.0",
+    "vitest": "^2.1.0"
+  },
+  "packageManager": "pnpm@10.0.0"
+}
