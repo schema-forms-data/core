@@ -50,7 +50,7 @@
   ],
   "engines": {
     "node": ">=22.0.0",
-    "pnpm": ">=10.0.0"
+    "pnpm": ">=9.0.0"
   },
   "scripts": {
     "build": "pnpm run build:js && pnpm run build:types",
@@ -74,5 +74,5 @@
     "vite-plugin-dts": "^4.0.0",
     "vitest": "^2.1.0"
   },
-  "packageManager": "pnpm@10.0.0"
+  "packageManager": "pnpm@9.0.0"
 }
